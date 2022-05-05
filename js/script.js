@@ -1,37 +1,36 @@
 function newItem() {
 
-  // Adding a new item
+  // Adding a new item to the list of items:
   let li = $('<li></li>');
   let inputValue = $('#input').val();
   li.append(inputValue);
 
-  // Error message if nothing is added
   if (inputValue === '') {
-    alert('You must write something!')
+    alert('You must write something!');
   } else {
     $('#list').append(li);
   }
 
-  // Crossing out an item
-  function crossOut(){
+  // Crossing out an item from the list of items:
+  function crossOut() {
     li.toggleClass('strike');
   }
 
-  li.on('dblclick', function crossOut(){
+  li.on('dblclick', function crossOut() {
     li.toggleClass('strike');
   });
 
-  // Adding the delete button "X"
+  // Adding the delete button "X":
   let crossOutButton = $('<crossOutButton></crossOutButton>');
-
-  function deleteListItem(){
-    li.addClass('delete');
-  }
 
   crossOutButton.append(document.createTextNode('X'));
   li.append(crossOutButton);
-  crossOutButton.on('click', deleteButton)
+  crossOutButton.on('click', deleteListItem);
 
-  // Reordering the items
+  function deleteListItem() {
+    li.addClass('delete')
+  }
+  // Reordering the items:
   $('#list').sortable();
+
 }
